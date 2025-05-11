@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $message = $_POST['message'];
-    $submit_date = date('Y-m-d H:i:s');  // Tanggal dan waktu saat ini
+    $submit_date = date('Y-m-d H:i:s');
     
     // Membersihkan data untuk mencegah SQL injection
     $name = $conn->real_escape_string($name);
@@ -21,9 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO contacts (name, email, phone, message, submit_date) 
             VALUES ('$name', '$email', '$phone', '$message', '$submit_date')";
     
-    // Menjalankan query
     if ($conn->query($sql) === TRUE) {
-        // Redirect ke halaman sukses
         header("Location: success.php");
         exit();
     } else {
